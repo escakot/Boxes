@@ -17,6 +17,7 @@
         _height = height;
         _width = width;
         _length = length;
+        _volume = height * length * width;
     }
     return self;
 }
@@ -30,16 +31,14 @@
 //This method will compare both Box Objects and return the number of Boxes
 //that will fit into each box. (Whichever is bigger)
 - (int) fitWithinBox:(Box *)anotherBox{
-    float boxVolume = self.height * self.width * self.length;
-    float anotherBoxVolume = [anotherBox volume];
     int numberOfBoxFit;
     
-    if (boxVolume > anotherBoxVolume) {
-        numberOfBoxFit = boxVolume/anotherBoxVolume;
+    if (self.volume > anotherBox.volume) {
+        numberOfBoxFit = self.volume/anotherBox.volume;
         NSLog(@"%i of those boxes will fit into my box.", numberOfBoxFit);
         return numberOfBoxFit;
     } else {
-        numberOfBoxFit = anotherBoxVolume/boxVolume;
+        numberOfBoxFit = anotherBox.volume/self.volume;
         NSLog(@"%i of my boxes will fit into that box.", numberOfBoxFit);
         return numberOfBoxFit;
     }
